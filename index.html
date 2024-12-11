@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reindirizzamento Affiliato</title>
+  <script>
+    // Mappa gli affiliati con le rispettive landing page
+    const affiliateLinks = {
+      "affiliato123": "https://www.lucadelprete.com/lezionegratuita-15122",
+      "affiliato456": "https://www.lucadelprete.com/lezionegratuita-15123"
+      // Aggiungi altri affiliati e link
+    };
+
+    // Legge l'ID affiliato dall'URL e reindirizza
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const affiliateId = urlParams.get('id'); // Recupera l'id affiliato dall'URL
+      const redirectUrl = affiliateLinks[affiliateId];
+
+      if (redirectUrl) {
+        window.location.replace(redirectUrl); // Reindirizza all'URL specifico dell'affiliato
+      } else {
+        window.location.replace("https://www.lucadelprete.com/errore"); // Pagina di errore se l'affiliato non esiste
+      }
+    };
+  </script>
+</head>
+<body>
+  <h1>Reindirizzamento in corso...</h1>
+</body>
+</html>
