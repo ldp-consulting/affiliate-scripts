@@ -6,17 +6,45 @@
   <title>Luca Del Prete - Lezione Gratuita</title>
   <script>
     window.onload = function() {
-      // Ottieni il percorso completo dell'URL
-      const currentPath = window.location.pathname;
+      // Ottieni l'URL completo con i parametri UTM
+      const currentUrl = window.location.href;
       
-      // Estrai l'ID dell'affiliato dal percorso (ad esempio affiliato123 da /affiliato123)
-      const path = currentPath.split('/').pop(); // Prendi la parte finale dell'URL (es: affiliato123)
+      // Leggi tutti i parametri UTM
+      const urlParams = new URLSearchParams(window.location.search);
+      const utmSource = urlParams.get('utm_source');
+      const utmMedium = "affiliate"; // Imposta utm_medium fisso su "affiliate"
+      const utmCampaign = urlParams.get('utm_campaign');
+      const utmTerm = urlParams.get('utm_term');
+      const utmContent = urlParams.get('utm_content');
       
       // La tua URL di destinazione (modifica questa URL come vuoi)
-      const destinationUrl = "https://www.lucadelprete.com/lezionegratuita";
+      const destinationUrl = "https://www.lucadelprete.com/lezionegratuita-15122";
       
-      // Costruisci il link con i parametri UTM: utm_source come ID affiliato e utm_medium=affiliate
-      const finalUrl = `${destinationUrl}?utm_source=${path}&utm_medium=affiliate`;
+      // Aggiungi i parametri UTM alla URL di destinazione
+      let finalUrl = destinationUrl;
+      let firstParam = true;  // Variabile per gestire l'aggiunta dei parametri
+
+      // Aggiungi i parametri UTM solo se esistono
+      if (utmSource) {
+        finalUrl += `${firstParam ? '?' : '&'}utm_source=${utmSource}`;
+        firstParam = false;
+      }
+      // Aggiungi utm_medium fisso su "affiliate"
+      finalUrl += `${firstParam ? '?' : '&'}utm_medium=${utmMedium}`;
+      firstParam = false;
+
+      if (utmCampaign) {
+        finalUrl += `${firstParam ? '?' : '&'}utm_campaign=${utmCampaign}`;
+        firstParam = false;
+      }
+      if (utmTerm) {
+        finalUrl += `${firstParam ? '?' : '&'}utm_term=${utmTerm}`;
+        firstParam = false;
+      }
+      if (utmContent) {
+        finalUrl += `${firstParam ? '?' : '&'}utm_content=${utmContent}`;
+        firstParam = false;
+      }
 
       // Fai il reindirizzamento alla destinazione con i parametri UTM
       window.location.replace(finalUrl);
@@ -24,5 +52,6 @@
   </script>
 </head>
 <body>
+  <h1>Reindirizzamento in corso...</h1>
 </body>
 </html>
