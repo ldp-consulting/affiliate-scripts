@@ -12,17 +12,48 @@
       // Leggi i parametri UTM
       const urlParams = new URLSearchParams(window.location.search);
       const utmSource = urlParams.get('utm_source');
+      const utmMedium = urlParams.get('utm_medium');
       const utmCampaign = urlParams.get('utm_campaign');
+      const utmTerm = urlParams.get('utm_term');
+      const utmContent = urlParams.get('utm_content');
+      const utmSitesource = urlParams.get('utm_sitesource');
+      const utmPlacement = urlParams.get('utm_placement');
       
       // La tua URL di destinazione (modifica questa URL come vuoi)
       const destinationUrl = "https://www.lucadelprete.com/lezionegratuita";
-
+      
       // Aggiungi i parametri UTM alla URL di destinazione
       let finalUrl = destinationUrl;
-      
-      // Aggiungi i parametri UTM solo se esistono
-      if (utmSource && utmCampaign) {
-        finalUrl += `?utm_source=${utmSource}&utm_campaign=${utmCampaign}`;
+      let firstParam = true;  // Variabile per gestire l'aggiunta dei parametri
+
+      // Aggiungi ogni parametro solo se esiste
+      if (utmSource) {
+        finalUrl += `${firstParam ? '?' : '&'}utm_source=${utmSource}`;
+        firstParam = false;
+      }
+      if (utmMedium) {
+        finalUrl += `${firstParam ? '?' : '&'}utm_medium=${utmMedium}`;
+        firstParam = false;
+      }
+      if (utmCampaign) {
+        finalUrl += `${firstParam ? '?' : '&'}utm_campaign=${utmCampaign}`;
+        firstParam = false;
+      }
+      if (utmTerm) {
+        finalUrl += `${firstParam ? '?' : '&'}utm_term=${utmTerm}`;
+        firstParam = false;
+      }
+      if (utmContent) {
+        finalUrl += `${firstParam ? '?' : '&'}utm_content=${utmContent}`;
+        firstParam = false;
+      }
+      if (utmSitesource) {
+        finalUrl += `${firstParam ? '?' : '&'}utm_sitesource=${utmSitesource}`;
+        firstParam = false;
+      }
+      if (utmPlacement) {
+        finalUrl += `${firstParam ? '?' : '&'}utm_placement=${utmPlacement}`;
+        firstParam = false;
       }
       
       // Fai il reindirizzamento alla destinazione con i parametri UTM
