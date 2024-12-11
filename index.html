@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reindirizzamento Affiliato</title>
+  <title>Luca Del Prete - Lezione Gratuita</title>
   <script>
     window.onload = function() {
-      // Ottieni la parte finale dell'URL (es: affiliato123 da /affiliato123)
-      const path = window.location.pathname.split('/').pop();
+      // Ottieni il percorso completo dell'URL
+      const currentPath = window.location.pathname;
       
-      // La URL di destinazione con i parametri UTM
+      // Estrai l'ID dell'affiliato dal percorso (ad esempio affiliato123 da /affiliato123)
+      const path = currentPath.split('/').pop(); // Prendi la parte finale dell'URL (es: affiliato123)
+      
+      // La tua URL di destinazione (modifica questa URL come vuoi)
       const destinationUrl = "https://www.lucadelprete.com/lezionegratuita";
       
-      // Costruisci il link con utm_source come ID affiliato e utm_medium=affiliate
+      // Costruisci il link con i parametri UTM: utm_source come ID affiliato e utm_medium=affiliate
       const finalUrl = `${destinationUrl}?utm_source=${path}&utm_medium=affiliate`;
 
       // Fai il reindirizzamento alla destinazione con i parametri UTM
@@ -21,6 +24,5 @@
   </script>
 </head>
 <body>
-  <h1>Reindirizzamento in corso...</h1>
 </body>
 </html>
