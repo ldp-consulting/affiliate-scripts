@@ -5,24 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reindirizzamento Affiliato</title>
   <script>
-    // Mappa gli affiliati con le rispettive landing page
-    const affiliateLinks = {
-      "affiliato123": "https://www.lucadelprete.com/lezionegratuita-15122",
-      "affiliato456": "https://www.lucadelprete.com/lezionegratuita-15123"
-      // Aggiungi altri affiliati e link
-    };
-
-    // Legge l'ID affiliato dall'URL e reindirizza
     window.onload = function() {
+      // Ottieni l'URL completo con i parametri UTM
+      const currentUrl = window.location.href;
+      
+      // Leggi i parametri UTM
       const urlParams = new URLSearchParams(window.location.search);
-      const affiliateId = urlParams.get('id'); // Recupera l'id affiliato dall'URL
-      const redirectUrl = affiliateLinks[affiliateId];
+      const utmSource = urlParams.get('utm_source');
+      const utmCampaign = urlParams.get('utm_campaign');
+      
+      // La tua URL di destinazione (modifica questa URL come vuoi)
+      const destinationUrl = "https://www.lucadelprete.com/lezionegratuita";
 
-      if (redirectUrl) {
-        window.location.replace(redirectUrl); // Reindirizza all'URL specifico dell'affiliato
-      } else {
-        window.location.replace("https://www.lucadelprete.com/errore"); // Pagina di errore se l'affiliato non esiste
+      // Aggiungi i parametri UTM alla URL di destinazione
+      let finalUrl = destinationUrl;
+      
+      // Aggiungi i parametri UTM solo se esistono
+      if (utmSource && utmCampaign) {
+        finalUrl += `?utm_source=${utmSource}&utm_campaign=${utmCampaign}`;
       }
+      
+      // Fai il reindirizzamento alla destinazione con i parametri UTM
+      window.location.replace(finalUrl);
     };
   </script>
 </head>
