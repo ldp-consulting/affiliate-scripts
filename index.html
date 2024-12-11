@@ -6,32 +6,14 @@
   <title>Reindirizzamento Affiliato</title>
   <script>
     window.onload = function() {
-      // Ottieni l'URL completo con i parametri UTM
-      const currentUrl = window.location.href;
+      // Ottieni la parte finale dell'URL (es: affiliato123 da /affiliato123)
+      const path = window.location.pathname.split('/').pop();
       
-      // Leggi il parametro utm_source (ID dell'affiliato)
-      const urlParams = new URLSearchParams(window.location.search);
-      const utmSource = urlParams.get('utm_source');
-      
-      // Imposta il valore fisso per utm_medium
-      const utmMedium = "affiliate"; // Impostato fisso come "affiliate"
-      
-      // La tua URL di destinazione (modifica questa URL come vuoi)
+      // La URL di destinazione con i parametri UTM
       const destinationUrl = "https://www.lucadelprete.com/lezionegratuita";
       
-      // Aggiungi i parametri UTM alla URL di destinazione
-      let finalUrl = destinationUrl;
-      let firstParam = true;  // Variabile per gestire l'aggiunta dei parametri
-
-      // Aggiungi utm_source solo se esiste
-      if (utmSource) {
-        finalUrl += `${firstParam ? '?' : '&'}utm_source=${utmSource}`;
-        firstParam = false;
-      }
-      
-      // Aggiungi utm_medium fisso come "affiliate"
-      finalUrl += `${firstParam ? '?' : '&'}utm_medium=${utmMedium}`;
-      firstParam = false;
+      // Costruisci il link con utm_source come ID affiliato e utm_medium=affiliate
+      const finalUrl = `${destinationUrl}?utm_source=${path}&utm_medium=affiliate`;
 
       // Fai il reindirizzamento alla destinazione con i parametri UTM
       window.location.replace(finalUrl);
