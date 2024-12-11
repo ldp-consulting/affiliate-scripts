@@ -3,64 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luca Del Prete - Lezione Gratuita</title>
+  <title>Reindirizzamento Affiliato</title>
   <script>
     window.onload = function() {
       // Ottieni l'URL completo con i parametri UTM
       const currentUrl = window.location.href;
       
-      // Leggi i parametri UTM
+      // Leggi il parametro utm_source (ID dell'affiliato)
       const urlParams = new URLSearchParams(window.location.search);
       const utmSource = urlParams.get('utm_source');
-      const utmMedium = urlParams.get('utm_medium');
-      const utmCampaign = urlParams.get('utm_campaign');
-      const utmTerm = urlParams.get('utm_term');
-      const utmContent = urlParams.get('utm_content');
-      const utmSitesource = urlParams.get('utm_sitesource');
-      const utmPlacement = urlParams.get('utm_placement');
+      
+      // Imposta il valore fisso per utm_medium
+      const utmMedium = "affiliate"; // Impostato fisso come "affiliate"
       
       // La tua URL di destinazione (modifica questa URL come vuoi)
-      const destinationUrl = "https://www.lucadelprete.com/lezionegratuita-15122";
+      const destinationUrl = "https://www.lucadelprete.com/lezionegratuita";
       
       // Aggiungi i parametri UTM alla URL di destinazione
       let finalUrl = destinationUrl;
       let firstParam = true;  // Variabile per gestire l'aggiunta dei parametri
 
-      // Aggiungi ogni parametro solo se esiste
+      // Aggiungi utm_source solo se esiste
       if (utmSource) {
         finalUrl += `${firstParam ? '?' : '&'}utm_source=${utmSource}`;
         firstParam = false;
       }
-      if (utmMedium) {
-        finalUrl += `${firstParam ? '?' : '&'}utm_medium=${utmMedium}`;
-        firstParam = false;
-      }
-      if (utmCampaign) {
-        finalUrl += `${firstParam ? '?' : '&'}utm_campaign=${utmCampaign}`;
-        firstParam = false;
-      }
-      if (utmTerm) {
-        finalUrl += `${firstParam ? '?' : '&'}utm_term=${utmTerm}`;
-        firstParam = false;
-      }
-      if (utmContent) {
-        finalUrl += `${firstParam ? '?' : '&'}utm_content=${utmContent}`;
-        firstParam = false;
-      }
-      if (utmSitesource) {
-        finalUrl += `${firstParam ? '?' : '&'}utm_sitesource=${utmSitesource}`;
-        firstParam = false;
-      }
-      if (utmPlacement) {
-        finalUrl += `${firstParam ? '?' : '&'}utm_placement=${utmPlacement}`;
-        firstParam = false;
-      }
       
+      // Aggiungi utm_medium fisso come "affiliate"
+      finalUrl += `${firstParam ? '?' : '&'}utm_medium=${utmMedium}`;
+      firstParam = false;
+
       // Fai il reindirizzamento alla destinazione con i parametri UTM
       window.location.replace(finalUrl);
     };
   </script>
 </head>
 <body>
+  <h1>Reindirizzamento in corso...</h1>
 </body>
 </html>
