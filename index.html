@@ -11,8 +11,8 @@
       
       // Leggi tutti i parametri UTM
       const urlParams = new URLSearchParams(window.location.search);
-      const utmSource = urlParams.get('utm_source');
-      const utmMedium = "affiliate"; // Imposta utm_medium fisso su "affiliate"
+      const utmSource = "affiliate";;
+      const utmMedium = urlParams.get('utm_medium'); // Imposta utm_medium fisso su "affiliate"
       const utmCampaign = urlParams.get('utm_campaign');
       const utmTerm = urlParams.get('utm_term');
       const utmContent = urlParams.get('utm_content');
