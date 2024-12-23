@@ -11,8 +11,8 @@
       
       // Leggi tutti i parametri UTM
       const urlParams = new URLSearchParams(window.location.search);
-      const utmSource = "affiliate";;
-      const utmMedium = urlParams.get('utm_medium'); // Imposta utm_medium fisso su "affiliate"
+      const utmSource = "affiliate"; // Imposta utm_source fisso
+      const utmMedium = urlParams.get('utm_medium'); // Leggi utm_medium
       const utmCampaign = urlParams.get('utm_campaign');
       const utmTerm = urlParams.get('utm_term');
       const utmContent = urlParams.get('utm_content');
@@ -29,10 +29,10 @@
         finalUrl += `${firstParam ? '?' : '&'}utm_source=${utmSource}`;
         firstParam = false;
       }
-      // Aggiungi utm_medium fisso su "affiliate"
-      finalUrl += `${firstParam ? '?' : '&'}utm_medium=${utmMedium}`;
-      firstParam = false;
-
+      if (utmMedium) {
+        finalUrl += `${firstParam ? '?' : '&'}utm_medium=${utmMedium}`;
+        firstParam = false;
+      }
       if (utmCampaign) {
         finalUrl += `${firstParam ? '?' : '&'}utm_campaign=${utmCampaign}`;
         firstParam = false;
